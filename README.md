@@ -100,6 +100,7 @@ Local branch(your computer) -> Remote(github)
 1. Click "New pull request"
 1. Add title & message.
    - title : one line, concise
+1. Use "Squash and merge"
 
 <br>
 
