@@ -9,7 +9,7 @@ public class Driver {
 
     public static void main(String[] args) {
         boolean playing = true;
-        currLocation = new Location("kitchen");
+        currLocation = new Location("kitchen"); //need one more field
         Item Pistol = new Item("Pistol", "Weapon", "A six gage pistol loaded");
         Item Knife = new Item("Knife", "Weapon", "A Kife");
         Item Beef = new Item("Beef", "Food", "A Beef");
