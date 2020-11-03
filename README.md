@@ -113,9 +113,9 @@ After merge, local code == remote code.
 Remote -> Local
 
 > ```
-> $ git pull master
+> $ git pull [master]
 > or
-> $ git pull origin master
+> $ git pull origin [master]
 > ```
 
 <br>
