@@ -81,11 +81,19 @@ public int numItems(){
 }
 
 public Item removeItem(String itemRemoving){
-    
+    if (hasItem(itemRemoving)){
+        Item temp = getItem(itemRemoving);
+        int position = itemList.indexOf(getItem(itemRemoving));
+        itemList.remove(position);
+        return temp;
+    }
+    else{
+        return null;
+    }
 
     }
 }
-}
+
 
 
 
