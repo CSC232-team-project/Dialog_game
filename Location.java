@@ -54,13 +54,12 @@ public Item getItem(String itemGetting){
         if(itemGetting.equalsIgnoreCase(itemName)){
             return nextTo;
         }
-        iter.hasNext();
     }
     return null;
     }
 
 public Item getItem(int index){
-    if(index<0 || index>itemList.size()){
+    if(index<0 || index>=itemList.size()){
         return null;
     }
     else{
