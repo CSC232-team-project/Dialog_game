@@ -34,7 +34,8 @@ public class Item {
         this.description = description;
     }
 
+    @Override
     public String toString() {
-        return name + " [ " + type + "] : " + description;
+        return name + " [" + type + "] : " + description;
     }
 }

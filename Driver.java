@@ -9,17 +9,17 @@ public class Driver {
 
     public static void main(String[] args) {
         boolean playing = true;
-        currLocation = new Location("kitchen"); //need one more field
-        Item Pistol = new Item("Pistol", "Weapon", "A six gage pistol loaded");
-        Item Knife = new Item("Knife", "Weapon", "A Kife");
-        Item Beef = new Item("Beef", "Food", "A Beef");
+        currLocation = new Location("Julian", "a STEM building built by Julian");
+        Item Pistol = new Item("Computer", "CS", "A computer used with CS lab.");
+        Item Knife = new Item("Book", "Chemistry", "A book for priciple of chemistry.");
+        Item Beef = new Item("Ruler", "Math", "A thing to measure length is math.");
         currLocation.addItem(Pistol);
         currLocation.addItem(Knife);
         currLocation.addItem(Beef);
 
         Scanner scan = new Scanner(System.in);
         while (playing) {
-            System.out.println("Enter command: ");
+            System.out.print("Enter command: ");
             String userCommand = scan.nextLine();
             userCommand = userCommand.toLowerCase();
 
@@ -47,7 +47,7 @@ public class Driver {
                     if (userCommandList.length == 2) {
                         Item examineItem = currLocation.getItem(userCommandList[1]);
                         if (examineItem != null) {
-                            examineItem.toString();
+                            System.out.println(examineItem.toString());
                         } else {
                             System.out.println("Cannot find that item");
                         }
@@ -60,5 +60,6 @@ public class Driver {
                     break;
             }
         }
+        scan.close();
     }
 }
