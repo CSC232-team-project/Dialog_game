@@ -54,13 +54,15 @@ public Item getItem(String itemGetting){
         if(itemGetting.equalsIgnoreCase(itemName)){
             return nextTo;
         }
-        iter.hasNext();
+
     }
     return null;
     }
 
 public Item getItem(int index){
-    if(index<0 || index>itemList.size()){
+
+    if(index<0 || index>=itemList.size()){
+
         return null;
     }
     else{
@@ -81,12 +83,22 @@ public int numItems(){
 }
 
 public Item removeItem(String itemRemoving){
-    
+
+    if (hasItem(itemRemoving)){
+        Item temp = getItem(itemRemoving);
+        int position = itemList.indexOf(getItem(itemRemoving));
+        itemList.remove(position);
+        return temp;
+    }
+    else{
+        return null;
+    }
 
     }
 }
-}
 
+
+    
 
 
 
