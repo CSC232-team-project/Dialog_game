@@ -104,4 +104,12 @@ public class Location {
         return map.containsKey(directionName);
     }
 
+    public Location getLocation (String directionName){
+        if(map.containsKey(directionName)){
+            return map.get(directionName);
+        }
+        else{
+            return null;
+        }
+    }
 }
