@@ -95,4 +95,13 @@ public class Location {
         }
 
     }
+
+    public void connect(String directionName, Location toGo){
+        map.put(directionName,toGo);
+    }
+
+    public boolean canMove (String directionName){
+        return map.containsKey(directionName);
+    }
+
 }
