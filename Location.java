@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class Location {
@@ -6,11 +7,13 @@ public class Location {
     private String locationName;
     private String locationDescription;
     private ArrayList<Item> itemList;
+    private HashMap<String, Location> map;
 
     public Location(String pName, String pDescription) {
         locationName = pName;
         locationDescription = pDescription;
         itemList = new ArrayList<Item>();
+        map = new HashMap<String, Location>();
     }
 
     public String getName() {
