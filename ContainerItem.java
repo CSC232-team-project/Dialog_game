@@ -8,6 +8,13 @@ public class ContainerItem extends Item {
         super(name, type, description);
         items = new ArrayList<Item>();
     }
+
+    public void addItem(Item itemToAdd){
+        items.add(itemToAdd);
+    }
+
     
+
+
     
 }
