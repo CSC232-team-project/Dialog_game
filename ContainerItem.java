@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ContainerItem extends Item {
     
@@ -24,6 +25,10 @@ public class ContainerItem extends Item {
             iter.hasNext();
         }
         return false;
+    }
+
+    public Item removeItem (String itemRemoving){
+        
     }
 
 
