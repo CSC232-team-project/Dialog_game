@@ -28,11 +28,9 @@ public class ContainerItem extends Item {
     }
 
     public Item removeItem (String itemRemoving){
-        
-    }
-
-
-
+       if(hasItem(itemRemoving)){
+           Item temp = 
+       }
     }
 
 
