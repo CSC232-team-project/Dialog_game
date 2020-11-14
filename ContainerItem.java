@@ -13,7 +13,22 @@ public class ContainerItem extends Item {
         items.add(itemToAdd);
     }
 
-    
+    public boolean hasItem(String itemSearching){
+        Iterator<Item> iter = items.iterator();
+        while (iter.hasNext()) {
+            Item nextTo = iter.next();
+            String itemName = nextTo.getName();
+            if (itemSearching.equalsIgnoreCase(itemName)) {
+                return true;
+            }
+            iter.hasNext();
+        }
+        return false;
+    }
+
+
+
+    }
 
 
     
