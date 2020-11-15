@@ -57,7 +57,6 @@ public class Location {
             if (itemGetting.equalsIgnoreCase(itemName)) {
                 return nextTo;
             }
-
         }
         return null;
     }
