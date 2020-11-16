@@ -105,6 +105,7 @@ public class Location {
     }
 
     public Location getLocation (String directionName){
+        //capital?
         if(map.containsKey(directionName)){
             return map.get(directionName);
         }
