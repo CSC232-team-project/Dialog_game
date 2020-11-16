@@ -75,8 +75,8 @@ If you are done with some methods or classes, do Add & Commit
 `commit message` should be
 
 - one line
-- start with what you did (ex) Add ~, Remove ~)
-  <br>
+- start with what you did (ex) Add ~, Remove ~
+<br>
 
 ---
 
@@ -134,9 +134,9 @@ Remote -> Local
 
 ### Branch list
 
-`git branch -r`: branch list in REMOTE(Github)
-`git branch -a`: branch list in LOCAL & REMOTE
-`git push origin --delete [branch_name]`: remove Remote brach
+- `git branch -r`: branch list in REMOTE(Github)
+- `git branch -a`: branch list in LOCAL & REMOTE
+- `git push origin --delete [branch_name]`: remove Remote brach
 
 <br>
 
@@ -151,3 +151,4 @@ Remote -> Local
 - `git reset --soft HEAD^`
 - `git reset --hard HEAD^`
 - `git revert HEAD`
+- `git push --set-upstream origin master`
