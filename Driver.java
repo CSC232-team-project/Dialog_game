@@ -6,12 +6,13 @@ import java.util.Scanner;
 public class Driver {
 
     private static Location currLocation;
-    private static ContainerItem itemHold;
+    private static ContainerItem myInventory;
 
     public static void main(String[] args) {
         boolean playing = true;
-     
+
         creatWorld();
+        myInventory = new ContainerItem("Backpack", "Container", "a all new backpack");
 
         Scanner scan = new Scanner(System.in);
         while (playing) {
@@ -20,27 +21,30 @@ public class Driver {
             userCommand = userCommand.toLowerCase();
 
             String[] userCommandList = userCommand.split(" ");
+
             switch (userCommandList[0]) {
                 case "quit":
                     if (userCommandList.length == 1) {
                         playing = false;
                     } else {
-                        System.out.println("I don’t know how to do that");
+                        System.out.println("Invalud command. Check help command to see the list of available commands");
                     }
                     break;
                 case "look":
                     if (userCommandList.length == 1) {
                         System.out.println(currLocation.getName() + " - " + currLocation.getDescription()
-                                + "has the following items: \n");
+                                + " has the following items: \n");
                         for (int i = 0; i < currLocation.numItems(); i++) {
                             System.out.println("+ " + currLocation.getItem(i) + "\n");
                         }
                     } else {
-                        System.out.println("I don’t know how to do that");
+                        System.out.println("Invalud command. Check help command to see the list of available commands");
                     }
                     break;
                 case "examine":
-                    if (userCommandList.length == 2) {
+                    if (userCommandList.length == 1) {
+                        System.out.println("Provide item’s name to examine");
+                    } else if (userCommandList.length == 2) {
                         Item examineItem = currLocation.getItem(userCommandList[1]);
                         if (examineItem != null) {
                             System.out.println(examineItem.toString());
@@ -48,73 +52,92 @@ public class Driver {
                             System.out.println("Cannot find that item");
                         }
                     } else {
-                        System.out.println("I don’t know how to do that");
+                        System.out.println("Invalud command. Check help command to see the list of available commands");
                     }
                     break;
                 case "go":
-                    if (userCommandList.length == 2 && currLocation.canMove(userCommandList[1])) {
-                        currLocation = currLocation.getLocation([1]);
-                    }
-                    else{
-                        System.out.println("No Location in the direction");
+                    if (userCommandList.length == 1) {
+                        System.out.println("Provide direction to go");
+                    } else if (userCommandList.length == 2) {
+                        if (currLocation.canMove(userCommandList[1])) {
+                            currLocation = currLocation.getLocation(userCommandList[1]);
+                        } else if (!userCommandList[1].equals("east") && !userCommandList[1].equals("west")
+                                && !userCommandList[1].equals("south") && !userCommandList[1].equals("north")) {
+                            System.out.println("Invalid direction. Choose among: east, west, south, north");
+                        } else {
+                            System.out.println("No Location in the direction");
+                        }
+                    } else {
+                        System.out.println("Invalud command. Check help command to see the list of available commands");
                     }
                     break;
                 case "inventory":
                     if (userCommandList.length == 1) {
-                        System.out.println(itemHold.toString());
+                        System.out.println(myInventory.toString());
                     }
                     break;
                 case "take":
-                    if (userCommandList.length == 2 && currLocation.hasItem(userCommandList[1])) {
-                        Item temp = currLocation.removeItem(userCommandList[1]);
-                        itemHold.addItem(temp);
-                    }
-                    else{
+                    if (userCommandList.length == 1) {
+                        System.out.println("Provide item name to take");
+                    } else if (userCommandList.length == 2) {
+                        if (currLocation.hasItem(userCommandList[1])) {
+                            Item temp = currLocation.removeItem(userCommandList[1]);
+                            myInventory.addItem(temp);
+                        } else {
+                            System.out.println(
+                                    "Invalid item name. Use \"look\" command to see available items in the location");
+                        }
+                    } else {
                         System.out.println("No Item found");
                     }
                     break;
                 case "drop":
-                    if (userCommandList.length == 2 && itemHold.hasItem(userCommandList[1])) {
-                        Item temp = itemHold.removeItem(userCommandList[1]);
-                        currLocation.addItem(temp);
-                    }
-                    else{
+                    if (userCommandList.length == 1) {
+                        System.out.println("Provide item name to drop");
+                    } else if (userCommandList.length == 2) {
+                        if (myInventory.hasItem(userCommandList[1])) {
+                            Item temp = myInventory.removeItem(userCommandList[1]);
+                            currLocation.addItem(temp);
+                        } else {
+                            System.out.println(
+                                    "Invalid item name. Use \"inventory\" command to see available items in the backpack");
+                        }
+                    } else {
                         System.out.println("No Item to drop");
                     }
                     break;
                 case "help":
-                    System.out.println("
-                    quit: quit the game.\n
-                    look: shows items in current location.\n
-                    examine + \"item name\": shows description of the itme.\n
-                    go + \"direction\": go to the location at the direction.\n
-                    inventory: shows items in the backpack.\n
-                    take + \"item name\": put item in the location to the backpack.\n
-                    drop + \"item name\": drop item in the backpack to the location.\n
-                    help: shows available commands in the game.\n
-                    ");
+                    System.out.println("* quit:                    quit the game.\n"
+                            + "* look:                    shows items in current location.\n"
+                            + "* examine + \"item name\":   shows description of the itme.\n"
+                            + "* go + \"direction\":        go to the location at the direction.\n"
+                            + "* inventory:               shows items in the backpack.\n"
+                            + "* take + \"item name\":      put item in the location to the backpack.\n"
+                            + "* drop + \"item name\":      drop item in the backpack to the location.\n"
+                            + "* help:                    shows available commands in the game.\n");
+                    break;
                 default:
-                    System.out.println("I don’t know how to do that");
+                    System.out.println("Invalud command. Check help command to see the list of available commands");
                     break;
             }
         }
         scan.close();
     }
 
-    public static void creatWorld(){
-        peeler = new Location("peeler", "A peeler");
-        Roy = new Location("Roy", "a Roy");
-        Julian = new Location("Julian", "a STEM building built by Julian");
-        Union = new Location("Union", "a Union");
+    public static void creatWorld() {
+        Location peeler = new Location("peeler", "A peeler");
+        Location Roy = new Location("Roy", "a Roy");
+        Location Julian = new Location("Julian", "a STEM building built by Julian");
+        Location Union = new Location("Union", "a Union");
 
-        Julian.connect("West", peeler);
-        peeler.connect("East", Julian);
+        Julian.connect("west", peeler);
+        peeler.connect("east", Julian);
 
-        Julian.connect("North", Roy);
-        Roy.connect("South", Julian);
+        Julian.connect("north", Roy);
+        Roy.connect("south", Julian);
 
-        Julian.connect("East", Union);
-        Union.connect("West", Julian);
+        Julian.connect("east", Union);
+        Union.connect("west", Julian);
 
         Item Computer = new Item("Computer", "CS", "A computer used with CS lab.");
         Item Book = new Item("Book", "Chemistry", "A book for priciple of chemistry.");
@@ -127,9 +150,9 @@ public class Driver {
         peeler.addItem(Picture);
         Item CSTextbook = new Item("CSTextbook", "CS", "A CS Textbook");
         Roy.addItem(CSTextbook);
-        Item ATM = new Item("ATM", "CS", "A ATM");
+        Item ATM = new Item("ATM", "machine", "A ATM");
         Union.addItem(ATM);
-        
+
         currLocation = Julian;
     }
 }
