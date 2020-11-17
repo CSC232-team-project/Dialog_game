@@ -27,9 +27,25 @@ public class ContainerItem extends Item {
         return false;
     }
 
+    public Item getItem(String itemGetting){
+        Iterator<Item> iter = items.iterator();
+        while (iter.hasNext()) {
+            Item nextTo = iter.next();
+            String itemName = nextTo.getName();
+            if (itemGetting.equalsIgnoreCase(itemName)) {
+                return nextTo;
+            }
+        }
+        return null;
+    }
+
     public Item removeItem (String itemRemoving){
-       if(hasItem(itemRemoving)){
-           Item temp = 
+       if(!hasItem(itemRemoving)){
+           return null;
+       }
+       else{
+           int index = items.indexOf(getItem(itemRemoving));
+           return items.remove(index);
        }
     }
 
