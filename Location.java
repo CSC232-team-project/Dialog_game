@@ -98,7 +98,7 @@ public class Location {
     }
 
     public Location getLocation (String directionName){
-        if(map.containsKey(directionName)){
+        if(canMove(directionName)){
             return map.get(directionName);
         }
         else{
