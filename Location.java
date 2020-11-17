@@ -64,14 +64,7 @@ public Item getItem(int index){
         return null;
     }
     else{
-        int position = 0;
-        Iterator<Item> iter = itemList.iterator();
-        Item temp = iter.next();
-        while (position<index && iter.hasNext()){
-            temp = iter.next();
-            position++;
-        }
-        return temp;
+        return itemList.get(index);
     }
 }
 
