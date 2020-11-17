@@ -33,6 +33,15 @@ public class ContainerItem extends Item {
        }
     }
 
-
+    @Override
+    public String toString()
+    {
+        String listOfItem = "";
+        for(Item anItem : items)
+        {
+            listOfItem += "+ " + anItem.getName() + "\n";
+        }
+        return super.toString() + "\n" + listOfItem;
+    }
     
 }
