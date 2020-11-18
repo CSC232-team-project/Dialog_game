@@ -38,6 +38,7 @@ public class Driver {
                             System.out.println("+ " + currLocation.getItem(i) + "\n");
                         }
                     } else {
+
                         System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
@@ -52,6 +53,7 @@ public class Driver {
                             System.out.println("Cannot find that item");
                         }
                     } else {
+
                         System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
@@ -68,7 +70,9 @@ public class Driver {
                             System.out.println("No Location in the direction");
                         }
                     } else {
+
                         System.out.println("Invalid command. Check help command to see the list of available commands");
+
                     }
                     break;
                 case "inventory":
@@ -118,6 +122,7 @@ public class Driver {
                     break;
                 default:
                     System.out.println("Invalid command. Check help command to see the list of available commands");
+
                     break;
             }
         }
@@ -125,6 +130,7 @@ public class Driver {
     }
 
     public static void creatWorld() {
+
         Location Peeler = new Location("Peeler", "Peeler: An Art building");
         Location Roy = new Location("Roy", "Roy: A library named after Roy O West");
         Location Julian = new Location("Julian", "Julian: A STEM building built by Julian");
@@ -132,6 +138,7 @@ public class Driver {
 
         Julian.connect("west", Peeler);
         Peeler.connect("east", Julian);
+
 
         Julian.connect("north", Roy);
         Roy.connect("south", Julian);
@@ -150,7 +157,9 @@ public class Driver {
         Peeler.addItem(Picture);
         Item CSTextbook = new Item("CSTextbook", "CS", "A CS textbook used by Chad Byers in this college year");
         Roy.addItem(CSTextbook);
+
         Item ATM = new Item("ATM", "machine", "A PNC ATM out of order");
+
         Union.addItem(ATM);
 
         currLocation = Julian;
