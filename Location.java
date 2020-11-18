@@ -57,16 +57,15 @@ public class Location {
             if (itemGetting.equalsIgnoreCase(itemName)) {
                 return nextTo;
             }
+            iter.hasNext();
         }
         return null;
     }
 
     public Item getItem(int index) {
-
-        if (index < 0 || index >= itemList.size()) {
+        if (index < 0 || index > itemList.size()) {
             return null;
-        } 
-        else {
+        } else {
             return itemList.get(index);
         }
     }
@@ -77,7 +76,6 @@ public class Location {
     }
 
     public Item removeItem(String itemRemoving) {
-
         if (hasItem(itemRemoving)) {
             Item temp = getItem(itemRemoving);
             int position = itemList.indexOf(getItem(itemRemoving));
@@ -86,7 +84,6 @@ public class Location {
         } else {
             return null;
         }
-
     }
 
     public void connect(String directionName, Location toGo){
@@ -98,7 +95,8 @@ public class Location {
     }
 
     public Location getLocation (String directionName){
-        if(canMove(directionName)){
+        //capital?
+        if(map.containsKey(directionName)){
             return map.get(directionName);
         }
         else{
