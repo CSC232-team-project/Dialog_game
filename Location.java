@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class Location {
-    
+
     private String locationName;
     private String locationDescription;
     private ArrayList<Item> itemList;
@@ -35,6 +35,7 @@ public class Location {
     public void addItem(Item itemToAdd) {
         itemList.add(itemToAdd);
     }
+
 
     public boolean hasItem(String itemSearching) {
         Iterator<Item> iter = itemList.iterator();
@@ -106,5 +107,6 @@ public class Location {
 
 
 }
+
 
 
