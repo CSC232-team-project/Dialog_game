@@ -27,7 +27,7 @@ public class Driver {
                     if (userCommandList.length == 1) {
                         playing = false;
                     } else {
-                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                        System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
                 case "look":
@@ -38,7 +38,7 @@ public class Driver {
                             System.out.println("+ " + currLocation.getItem(i) + "\n");
                         }
                     } else {
-                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                        System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
                 case "examine":
@@ -52,7 +52,7 @@ public class Driver {
                             System.out.println("Cannot find that item");
                         }
                     } else {
-                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                        System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
                 case "go":
@@ -68,7 +68,7 @@ public class Driver {
                             System.out.println("No Location in the direction");
                         }
                     } else {
-                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                        System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
                 case "inventory":
@@ -125,13 +125,13 @@ public class Driver {
     }
 
     public static void creatWorld() {
-        Location peeler = new Location("peeler", "A peeler");
+        Location Peeler = new Location("Peeler", "A Peeler");
         Location Roy = new Location("Roy", "a Roy");
         Location Julian = new Location("Julian", "a STEM building built by Julian");
         Location Union = new Location("Union", "a Union");
 
-        Julian.connect("west", peeler);
-        peeler.connect("east", Julian);
+        Julian.connect("west", Peeler);
+        Peeler.connect("east", Julian);
 
         Julian.connect("north", Roy);
         Roy.connect("south", Julian);
@@ -147,7 +147,7 @@ public class Driver {
         Julian.addItem(Ruler);
 
         Item Picture = new Item("Picture", "Art", "A Picture");
-        peeler.addItem(Picture);
+        Peeler.addItem(Picture);
         Item CSTextbook = new Item("CSTextbook", "CS", "A CS Textbook");
         Roy.addItem(CSTextbook);
         Item ATM = new Item("ATM", "machine", "A ATM");
