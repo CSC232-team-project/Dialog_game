@@ -6,13 +6,12 @@ import java.util.Scanner;
 public class Driver {
 
     private static Location currLocation;
-    private static ContainerItem myInventory;
+    private static ContainerItem itemHold;
 
     public static void main(String[] args) {
         boolean playing = true;
-
+        
         creatWorld();
-        myInventory = new ContainerItem("Backpack", "Container", "a all new backpack");
 
         Scanner scan = new Scanner(System.in);
         while (playing) {
@@ -27,7 +26,7 @@ public class Driver {
                     if (userCommandList.length == 1) {
                         playing = false;
                     } else {
-                        System.out.println("Invalid command. Check help command to see the list of available commands");
+                        System.out.println("Invalud command. Check help command to see the list of available commands");
                     }
                     break;
                 case "look":
@@ -38,7 +37,7 @@ public class Driver {
                             System.out.println("+ " + currLocation.getItem(i) + "\n");
                         }
                     } else {
-                        System.out.println("Invalid command. Check help command to see the list of available commands");
+                        System.out.println("Invalud command. Check help command to see the list of available commands");
                     }
                     break;
                 case "examine":
@@ -52,7 +51,7 @@ public class Driver {
                             System.out.println("Cannot find that item");
                         }
                     } else {
-                        System.out.println("Invalid command. Check help command to see the list of available commands");
+                        System.out.println("Invalud command. Check help command to see the list of available commands");
                     }
                     break;
                 case "go":
@@ -68,54 +67,51 @@ public class Driver {
                             System.out.println("No Location in the direction");
                         }
                     } else {
-                        System.out.println("Invalid command. Check help command to see the list of available commands");
+                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                    }
+                    break;
+                case "go":
+                    if (userCommandList.length == 2 && currLocation.canMove(userCommandList[1])) {
+                        currLocation = currLocation.getLocation([1]);
+                    }
+                    else{
+                        System.out.println("No Location in the direction");
                     }
                     break;
                 case "inventory":
                     if (userCommandList.length == 1) {
-                        System.out.println(myInventory.toString());
+                        System.out.println(itemHold.toString());
                     }
                     break;
                 case "take":
-                    if (userCommandList.length == 1) {
-                        System.out.println("Provide item name to take");
-                    } else if (userCommandList.length == 2) {
-                        if (currLocation.hasItem(userCommandList[1])) {
-                            Item temp = currLocation.removeItem(userCommandList[1]);
-                            myInventory.addItem(temp);
-                        } else {
-                            System.out.println(
-                                    "Invalid item name. Use \"look\" command to see available items in the location");
-                        }
-                    } else {
+                    if (userCommandList.length == 2 && currLocation.hasItem(userCommandList[1])) {
+                        Item temp = currLocation.removeItem(userCommandList[1]);
+                        itemHold.addItem(temp);
+                    }
+                    else{
                         System.out.println("No Item found");
                     }
                     break;
                 case "drop":
-                    if (userCommandList.length == 1) {
-                        System.out.println("Provide item name to drop");
-                    } else if (userCommandList.length == 2) {
-                        if (myInventory.hasItem(userCommandList[1])) {
-                            Item temp = myInventory.removeItem(userCommandList[1]);
-                            currLocation.addItem(temp);
-                        } else {
-                            System.out.println(
-                                    "Invalid item name. Use \"inventory\" command to see available items in the backpack");
-                        }
-                    } else {
+                    if (userCommandList.length == 2 && itemHold.hasItem(userCommandList[1])) {
+                        Item temp = itemHold.removeItem(userCommandList[1]);
+                        currLocation.addItem(temp);
+                    }
+                    else{
                         System.out.println("No Item to drop");
                     }
                     break;
                 case "help":
-                    System.out.println("* quit:                    quit the game.\n"
-                            + "* look:                    shows items in current location.\n"
-                            + "* examine + \"item name\":   shows description of the itme.\n"
-                            + "* go + \"direction\":        go to the location at the direction.\n"
-                            + "* inventory:               shows items in the backpack.\n"
-                            + "* take + \"item name\":      put item in the location to the backpack.\n"
-                            + "* drop + \"item name\":      drop item in the backpack to the location.\n"
-                            + "* help:                    shows available commands in the game.\n");
-                    break;
+                    System.out.println("
+                    quit: quit the game.\n
+                    look: shows items in current location.\n
+                    examine + \"item name\": shows description of the itme.\n
+                    go + \"direction\": go to the location at the direction.\n
+                    inventory: shows items in the backpack.\n
+                    take + \"item name\": put item in the location to the backpack.\n
+                    drop + \"item name\": drop item in the backpack to the location.\n
+                    help: shows available commands in the game.\n
+                    ");
                 default:
                     System.out.println("Invalud command. Check help command to see the list of available commands");
                     break;
@@ -124,20 +120,20 @@ public class Driver {
         scan.close();
     }
 
-    public static void creatWorld() {
-        Location Peeler = new Location("Peeler", "A Peeler");
-        Location Roy = new Location("Roy", "a Roy");
-        Location Julian = new Location("Julian", "a STEM building built by Julian");
-        Location Union = new Location("Union", "a Union");
+    public static void creatWorld(){
+        peeler = new Location("peeler", "A peeler");
+        Roy = new Location("Roy", "a Roy");
+        Julian = new Location("Julian", "a STEM building built by Julian");
+        Union = new Location("Union", "a Union");
 
-        Julian.connect("west", Peeler);
-        Peeler.connect("east", Julian);
+        Julian.connect("West", peeler);
+        peeler.connect("East", Julian);
 
-        Julian.connect("north", Roy);
-        Roy.connect("south", Julian);
+        Julian.connect("North", Roy);
+        Roy.connect("South", Julian);
 
-        Julian.connect("east", Union);
-        Union.connect("west", Julian);
+        Julian.connect("East", Union);
+        Union.connect("West", Julian);
 
         Item Computer = new Item("Computer", "CS", "A computer used with CS lab.");
         Item Book = new Item("Book", "Chemistry", "A book for priciple of chemistry.");
@@ -147,12 +143,12 @@ public class Driver {
         Julian.addItem(Ruler);
 
         Item Picture = new Item("Picture", "Art", "A Picture");
-        Peeler.addItem(Picture);
+        peeler.addItem(Picture);
         Item CSTextbook = new Item("CSTextbook", "CS", "A CS Textbook");
         Roy.addItem(CSTextbook);
-        Item ATM = new Item("ATM", "machine", "A ATM");
+        Item ATM = new Item("ATM", "CS", "A ATM");
         Union.addItem(ATM);
-
+        
         currLocation = Julian;
     }
 }

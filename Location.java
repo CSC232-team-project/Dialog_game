@@ -36,36 +36,6 @@ public class Location {
         itemList.add(itemToAdd);
     }
 
-    public Item removeItem(String itemRemoving) {
-
-        if (hasItem(itemRemoving)) {
-            Item temp = getItem(itemRemoving);
-            int position = itemList.indexOf(getItem(itemRemoving));
-            itemList.remove(position);
-            return temp;
-        } else {
-            return null;
-        }
-
-    }
-
-    public void connect(String directionName, Location toGo) {
-        map.put(directionName, toGo);
-    }
-
-    public boolean canMove(String directionName) {
-        return map.containsKey(directionName);
-    }
-
-    public Location getLocation(String directionName) {
-        // capital?
-        if (map.containsKey(directionName)) {
-            return map.get(directionName);
-        } else {
-            return null;
-        }
-    }
-
     public boolean hasItem(String itemSearching) {
         Iterator<Item> iter = itemList.iterator();
         while (iter.hasNext()) {
@@ -105,4 +75,32 @@ public class Location {
         return count;
     }
 
+    public Item removeItem(String itemRemoving) {
+        if (hasItem(itemRemoving)) {
+            Item temp = getItem(itemRemoving);
+            int position = itemList.indexOf(getItem(itemRemoving));
+            itemList.remove(position);
+            return temp;
+        } else {
+            return null;
+        }
+    }
+
+    public void connect(String directionName, Location toGo){
+        map.put(directionName,toGo);
+    }
+
+    public boolean canMove (String directionName){
+        return map.containsKey(directionName);
+    }
+
+    public Location getLocation (String directionName){
+        //capital?
+        if(map.containsKey(directionName)){
+            return map.get(directionName);
+        }
+        else{
+            return null;
+        }
+    }
 }
