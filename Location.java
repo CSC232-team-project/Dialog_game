@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class Location {
-
+    
     private String locationName;
     private String locationDescription;
     private ArrayList<Item> itemList;
@@ -103,4 +103,8 @@ public class Location {
             return null;
         }
     }
+
+
 }
+
+
