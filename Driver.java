@@ -12,7 +12,7 @@ public class Driver {
         boolean playing = true;
 
         creatWorld();
-        myInventory = new ContainerItem("Backpack", "Container", "a all new backpack");
+        myInventory = new ContainerItem("Backpack", "Container", "Dr.White's old backpack of her childhood");
 
         Scanner scan = new Scanner(System.in);
         while (playing) {
@@ -27,7 +27,7 @@ public class Driver {
                     if (userCommandList.length == 1) {
                         playing = false;
                     } else {
-                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                        System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
                 case "look":
@@ -38,7 +38,7 @@ public class Driver {
                             System.out.println("+ " + currLocation.getItem(i) + "\n");
                         }
                     } else {
-                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                        System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
                 case "examine":
@@ -52,7 +52,7 @@ public class Driver {
                             System.out.println("Cannot find that item");
                         }
                     } else {
-                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                        System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
                 case "go":
@@ -68,7 +68,7 @@ public class Driver {
                             System.out.println("No Location in the direction");
                         }
                     } else {
-                        System.out.println("Invalud command. Check help command to see the list of available commands");
+                        System.out.println("Invalid command. Check help command to see the list of available commands");
                     }
                     break;
                 case "inventory":
@@ -117,7 +117,7 @@ public class Driver {
                             + "* help:                    shows available commands in the game.\n");
                     break;
                 default:
-                    System.out.println("Invalud command. Check help command to see the list of available commands");
+                    System.out.println("Invalid command. Check help command to see the list of available commands");
                     break;
             }
         }
@@ -125,13 +125,13 @@ public class Driver {
     }
 
     public static void creatWorld() {
-        Location peeler = new Location("peeler", "A peeler");
-        Location Roy = new Location("Roy", "a Roy");
-        Location Julian = new Location("Julian", "a STEM building built by Julian");
-        Location Union = new Location("Union", "a Union");
+        Location Peeler = new Location("Peeler", "Peeler: An Art building");
+        Location Roy = new Location("Roy", "Roy: A library named after Roy O West");
+        Location Julian = new Location("Julian", "Julian: A STEM building built by Julian");
+        Location Union = new Location("Union", "Union Building: A common area for students");
 
-        Julian.connect("west", peeler);
-        peeler.connect("east", Julian);
+        Julian.connect("west", Peeler);
+        Peeler.connect("east", Julian);
 
         Julian.connect("north", Roy);
         Roy.connect("south", Julian);
@@ -146,11 +146,11 @@ public class Driver {
         Julian.addItem(Book);
         Julian.addItem(Ruler);
 
-        Item Picture = new Item("Picture", "Art", "A Picture");
-        peeler.addItem(Picture);
-        Item CSTextbook = new Item("CSTextbook", "CS", "A CS Textbook");
+        Item Picture = new Item("Picture", "studentModel", "A Picture of Vy Hoang in front of the Depauw main gate");
+        Peeler.addItem(Picture);
+        Item CSTextbook = new Item("CSTextbook", "CS", "A CS textbook used by Chad Byers in this college year");
         Roy.addItem(CSTextbook);
-        Item ATM = new Item("ATM", "machine", "A ATM");
+        Item ATM = new Item("ATM", "machine", "A PNC ATM out of order");
         Union.addItem(ATM);
 
         currLocation = Julian;
