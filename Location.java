@@ -104,34 +104,4 @@ public class Location {
         int count = itemList.size();
         return count;
     }
-
-    public Item removeItem(String itemRemoving) {
-
-        if (hasItem(itemRemoving)) {
-            Item temp = getItem(itemRemoving);
-            int position = itemList.indexOf(getItem(itemRemoving));
-            itemList.remove(position);
-            return temp;
-        } else {
-            return null;
-        }
-
-    }
-
-    public void connect(String directionName, Location toGo) {
-        map.put(directionName, toGo);
-    }
-
-    public boolean canMove(String directionName) {
-        return map.containsKey(directionName);
-    }
-
-    public Location getLocation(String directionName) {
-        if (map.containsKey(directionName)) {
-            return map.get(directionName);
-        } else {
-            return null;
-        }
-    }
-
 }
