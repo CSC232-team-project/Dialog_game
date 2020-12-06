@@ -110,6 +110,24 @@ public class Driver {
                         System.out.println("No Item to drop");
                     }
                     break;
+                case "put":
+                    if (userCommandList.length == 4 && userCommandList[2].equals("in")) {
+                        if (currLocation.hasItem(userCommandList[3])
+                                && currLocation.getItem(userCommandList[3]) instanceof ContainerItem) {
+                            if (myInventory.hasItem(userCommandList[1])) {
+                                ContainerItem temp2 = (ContainerItem) currLocation.getItem(userCommandList[3]);
+                                temp2.addItem(myInventory.removeItem(userCommandList[1]));
+                            } else {
+                                System.out.println("Invalid item name, make sure the item is in your inventory");
+                            }
+                        } else {
+                            System.out.println("Invalid Container name");
+                        }
+                    } else {
+                        System.out.println(
+                                "Invalid put in command. Follow the format: Put \"item name\" in \"Container Name\"");
+                    }
+                    break;
                 case "help":
                     System.out.println("* quit:                    quit the game.\n"
                             + "* look:                    shows items in current location.\n"
@@ -161,6 +179,24 @@ public class Driver {
         Item ATM = new Item("ATM", "machine", "A PNC ATM out of order");
 
         Union.addItem(ATM);
+
+        ContainerItem Chest = new ContainerItem("Chest", "Container", "Secret chest hidden in the Union building");
+        Item Necklas = new Item("Necklas", "Jewel", "A old necklas with faded pearls");
+        Item Ring = new Item("Ring", "Jewel", "A ring with 18k diamond");
+        Item GoldBar = new Item("GoldBar", "Jewel", "A 500g gold bar");
+        Chest.addItem(Necklas);
+        Chest.addItem(Ring);
+        Chest.addItem(GoldBar);
+        Union.addItem(Chest);
+
+        ContainerItem Box = new ContainerItem("Box", "Container", "Sealed box with valuable painting");
+        Item painting1 = new Item("painting1", "painting", "A picture with a signiture of Vincent Van Gogh");
+        Item painting2 = new Item("painting2", "painting", "A drawing of apples by Paul Cezanne");
+        Item painting3 = new Item("painting3", "painting", "painting of two Tahitian women by Paul Gauguin");
+        Box.addItem(painting1);
+        Box.addItem(painting2);
+        Box.addItem(painting3);
+        Peeler.addItem(Box);
 
         currLocation = Julian;
     }
