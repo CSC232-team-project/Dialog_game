@@ -157,7 +157,6 @@ public class Driver {
         Julian.connect("west", Peeler);
         Peeler.connect("east", Julian);
 
-
         Julian.connect("north", Roy);
         Roy.connect("south", Julian);
 
