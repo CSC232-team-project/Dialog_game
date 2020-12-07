@@ -91,6 +91,18 @@ public class Driver {
                             System.out.println(
                                     "Invalid item name. Use \"look\" command to see available items in the location");
                         }
+                    } else if (userCommandList.length == 4 && userCommandList[2].equals("from")) {
+                        if (currLocation.hasItem(userCommandList[3])
+                                && currLocation.getItem(userCommandList[3]) instanceof ContainerItem) {
+                            ContainerItem temp2 = (ContainerItem) currLocation.getItem(userCommandList[3]);
+                            if (temp2.hasItem(userCommandList[1])) {
+                                myInventory.addItem(temp2.removeItem(userCommandList[1]));
+                            } else {
+                                System.out.println("Invalid item name, make sure the item is in the Container");
+                            }
+                        } else {
+                            System.out.println("Invalid Comtainer name");
+                        }
                     } else {
                         System.out.println("No Item found");
                     }
